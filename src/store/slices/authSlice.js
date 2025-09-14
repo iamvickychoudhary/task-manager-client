@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../api/api.js';
 
-// ================== Thunks ==================
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -27,7 +26,6 @@ export const register = createAsyncThunk(
   }
 );
 
-// ================== Slice ==================
 
 const slice = createSlice({
   name: 'auth',
@@ -50,7 +48,6 @@ const slice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Login
     builder.addCase(login.fulfilled, (state, action) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
@@ -61,7 +58,6 @@ const slice = createSlice({
       state.error = action.payload?.message || 'Login failed';
     });
 
-    // Register
     builder.addCase(register.fulfilled, (state, action) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
